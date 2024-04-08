@@ -1,12 +1,13 @@
-import DemoComponent from "./DemoComponent";
+import React from 'react';
+import MultiStepForm from './MultiStepForm';
+// import './App.css'
 
-
-function App() {
+const App = () => {
   return (
     <div>
-   <DemoComponent />
+      <MultiStepForm />
     </div>
   );
-}
+};
 
 export default App;
