@@ -2,30 +2,6 @@ import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 
 const Form2 = () => {
-    const containerStyle = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    };
-
-    const cardStyle = {
-        width: '700px',
-        height: '70px',
-        cursor: 'pointer',
-        transition: 'transform 0.2s',
-        border: '1px solid #ccc', 
-    boxShadow: '0 2px 4px rgba(0.1, 0.1, 0.1, 0.2)', 
-    };
-
-    const contentStyle = {
-        display: 'flex',
-        alignItems: 'center',
-    };
-
-    const textStyle = {
-        marginLeft: '30px', 
-    };
-
     const [hoveredCard, setHoveredCard] = useState(null);
     const [selectedCard, setSelectedCard] = useState(null);
 
@@ -44,64 +20,33 @@ const Form2 = () => {
     };
 
     return (
-        <div style={{padding: '20px'}}>
-            <h1>
-                Which are you most intrested in?
-            </h1>
-            <h5 style={containerStyle} className="mt-3 mb-5">
-                <span style={{ color: '#808080' }}>
-                    Choose just one. This will help us get you started(but we won't limit your experience)
-                </span>
+        <div className="p-4">
+            <h1 className="text-4xl font-bold">Which are you most interested in?</h1>
+            <h5 className="mt-3 mb-5 text-gray-600">
+                Choose just one. This will help us get you started (but we won't limit your experience)
             </h5>
             {[...Array(5)].map((_, index) => (
-                <div className="mb-3" style={containerStyle} key={index}>
+                <div className="mb-3 flex justify-center items-center" key={index}>
                     <Card
-                        style={{
-                            ...cardStyle,
-                            transform: (hoveredCard === index || selectedCard === index) ? 'scale(1.1)' : 'scale(1)',
-                            border: selectedCard === index ? '1px solid #000' : 'none',
-                        }}
+                        className={`w-4/6 h-70 cursor-pointer transition-transform duration-200 border-1 border-gray-300 shadow-md ${
+                            (hoveredCard === index || selectedCard === index) && 'transform scale-110'
+                        } ${selectedCard === index && 'border-black'}`}
                         onMouseEnter={() => handleMouseEnter(index)}
                         onMouseLeave={handleMouseLeave}
                         onClick={() => handleCardClick(index)}
                     >
-                        <Card.Body style={contentStyle}>
-                            {index === 0 && (
-                                <img
-                                    src="https://cdn-icons-png.freepik.com/256/2258/2258210.png?ga=GA1.1.71111488.1703915188&"
-                                    style={{ width: '50px', height: '50px' }} alt=''
-                                />
-                            )}
-                            {index === 1 && (
-                                <img
-                                    src="https://cdn-icons-png.freepik.com/256/3429/3429177.png?ga=GA1.1.71111488.1703915188&"
-                                    style={{ width: '50px', height: '50px' }} alt=''
-                                />
-                            )}
-                            {index === 2 && (
-                                <img
-                                    src="https://cdn-icons-png.freepik.com/256/2258/2258163.png?ga=GA1.1.71111488.1703915188&"
-                                    style={{ width: '50px', height: '50px' }} alt=''
-                                />
-                            )}
-                            {index === 3 && (
-                                <img
-                                    src="https://cdn-icons-png.freepik.com/256/2418/2418004.png?ga=GA1.1.71111488.1703915188&"
-                                    style={{ width: '50px', height: '50px' }} alt=''
-                                />
-                            )}
-                            {index === 4 && (
-                                <img
-                                    src="https://cdn-icons-png.freepik.com/256/1566/1566628.png?ga=GA1.1.71111488.1703915188&"
-                                    style={{ width: '50px', height: '50px' }} alt=''
-                                />
-                            )}
-                            <Card.Text style={textStyle}>
+                        <Card.Body className="flex items-center py-2">
+                            <img
+                                src={`https://cdn-icons-png.freepik.com/256/${index === 0 ? '2258/2258210' : index === 1 ? '3429/3429177' : index === 2 ? '2258/2258163' : index === 3 ? '2418/2418004' : '1566/1566628'}.png`}
+                                className="w-12 h-12"
+                                alt=""
+                            />
+                            <Card.Text className="ml-4">
                                 {index === 0 && (
                                     <>Learning specific skills to advance my career</>
                                 )}
                                 {index === 1 && (
-                                    <>Exploring new topics i am intrested in</>
+                                    <>Exploring new topics I am interested in</>
                                 )}
                                 {index === 2 && (
                                     <>Refreshing my math foundation</>
@@ -120,6 +65,5 @@ const Form2 = () => {
         </div>
     );
 };
-
 
 export default Form2;

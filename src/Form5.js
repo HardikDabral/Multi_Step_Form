@@ -2,8 +2,8 @@ import React from 'react';
 
 const Form5 = () => {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' ,padding: '25px'}}>
-            <div style={{ marginTop: '-30px', marginBottom: '10px', flexShrink: 0 }}>
+        <div className="flex flex-col items-center p-6">
+            <div className="mt-[-30px]">
                 <lord-icon
                     src="https://cdn.lordicon.com/pgmktfgp.json"
                     trigger="loop"
@@ -13,24 +13,24 @@ const Form5 = () => {
                 >
                 </lord-icon>
             </div>
-            <div style={{ textAlign: 'center', marginBottom: '0px' }}>
-                  <h1 style={{ fontSize: '3rem', marginBottom: '20px' }}>You are on your way!</h1>
-                  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+            <div className="text-center mb-0">
+                  <h1 className="text-5xl mb-2">You are on your way!</h1>
+                  <div className="flex justify-center mb-10">
                       {[...Array(5)].map((_, index) => (
                           <lord-icon
                               key={index}
                               src="https://cdn.lordicon.com/xjronrda.json"
                               trigger="loop"
                               delay="500"
-                              style={{ width: '60px', height: '60px', marginRight: '10px' }}
+                              style={{ width: '50px', height: '50px' }}
                           >
                           </lord-icon>
                       ))}
                   </div>
-                <p style={{ fontSize: '1.5rem', lineHeight: '1.5', margin: '0' }}>
+                <p className="text-xl leading-6 mb-2">
                     "Through its engaging and well-structured courses, Brilliant has taught me mathematics concepts that I previously struggled to understand. Now I feel confident approaching both technical job interviews and real-world problem-solving situations!"
                 </p>
-                <p style={{ fontSize: '1.5rem', lineHeight: '1.5', margin: '0', marginLeft: '40px' }}>
+                <p className="text-2xl leading-6 ml-30">
                     - Jacob S.
                 </p>
             </div>

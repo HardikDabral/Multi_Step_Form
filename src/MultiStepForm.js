@@ -55,6 +55,7 @@ const MultiStepForm = () => {
                         position: 'absolute',
                         left: '50%',
                         top: '0', 
+                        marginLeft: '10px',
                         transform: 'translateX(-50%)',
                     }}
                 >

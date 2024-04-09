@@ -5,93 +5,80 @@ import { InlineMath, BlockMath } from 'react-katex';
 
 const Form4 = () => {
   const [selectedCard, setSelectedCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   const handleCardClick = (cardIndex) => {
-    setSelectedCard(cardIndex);
+    if (selectedCard === cardIndex) {
+      setSelectedCard(null);
+    } else {
+      setSelectedCard(cardIndex);
+    }
   };
 
-  const cardContainerStyle = {
-    marginTop: '100px',
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: '30px', 
+  const handleMouseEnter = (cardIndex) => {
+    if (selectedCard !== cardIndex) {
+      setHoveredCard(cardIndex);
+    }
   };
 
-  const cardStyle = (index) => ({
-    width: '250px',
-    height: '250px',
-    cursor: 'pointer',
-    transition: 'transform 0.2s',
-    border: '1px solid #ccc', 
-    boxShadow: selectedCard === index ? '0px 0px 10px 3px #007bff' : 'none', 
-    transform: selectedCard === index ? 'scale(1.05)' : 'scale(1)', 
-  });
-
-  const cardTextStyle = {
-    textAlign: 'center',
-    fontSize: '18px',
-    lineHeight: '1.5',
-  };
-
-  const mathStyle = {
-    fontSize: '24px', 
+  const handleMouseLeave = () => {
+    setHoveredCard(null);
   };
 
   return (
-    <div style={{padding: '40px'}}>
-      <h1 style={{ textAlign: 'center'}}>Which is your math comfort level?</h1>
-
-      <h5 style={{ textAlign: 'center', marginBottom: '50px', marginTop: '20px' }}>Choose the highest level you feel confident in -- you can always adjust later.</h5>
-
-      <div style={cardContainerStyle}>
+    <div className="p-8">
+      <h1 className="text-center">Which is your math comfort level?</h1>
+      <h5 className="text-center mt-5 mb-10">Choose the highest level you feel confident in -- you can always adjust later.</h5>
+      <div className="flex flex-wrap justify-center gap-8">
         {[...Array(4)].map((_, index) => (
           <Card
             key={index}
-            style={cardStyle(index)} 
+            className={`w-60 h-60 cursor-pointer transition-transform duration-200 border border-gray-300 shadow-md ${selectedCard === index ? 'transform scale-105 border-blue-500' : hoveredCard === index ? 'transform scale-110' : ''}`}
             onClick={() => handleCardClick(index)}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={handleMouseLeave}
           >
-            <Card.Body style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <Card.Body className="flex flex-col items-center justify-center py-5">
               {index === 0 &&
                 <>
-                  <InlineMath math="5 \times \frac{1}{2} = ?" style={mathStyle} />
-                  <div style={cardTextStyle} className='mt-3'>
+                  <InlineMath math="5 \times \frac{1}{2} = ?" className="text-2xl mb-3" />
+                  <div className="text-lg">
                     Airthematic
                     <div>
-                      <span style={{ color: '#808080' }}>Introductory</span>
+                      <span className="text-gray-600">Introductory</span>
                     </div>
                   </div>
                 </>
               }
               {index === 1 &&
                 <>
-                  <BlockMath math="3x + 5 = 4" style={mathStyle} />
-                  <div style={cardTextStyle} className='mt-0'>
+                  <BlockMath math="3x + 5 = 4" className="text-2xl mb-1" />
+                  <div className="text-lg">
                     Basic Algebra
                     <div>
-                      <span style={{ color: '#808080' }}>Foundational</span>
+                      <span className="text-gray-600">Foundational</span>
                     </div>
                   </div>
                 </>
               }
               {index === 2 &&
                 <>
-                  <InlineMath math="x = \frac{{-b \pm \sqrt{{b^2 - 4ac}}}}{{2a}}" style={mathStyle} />
-                  <div style={cardTextStyle} className='mt-4'>
+                  <InlineMath math="x = \frac{{-b \pm \sqrt{{b^2 - 4ac}}}}{{2a}}" className="text-2xl mt-2 mb-1" />
+                  <div className="text-lg">
                     Intermediate Algebra
                     <div>
-                      <span style={{ color: '#808080' }}>Intermediate</span>
+                      <span className="text-gray-600">Intermediate</span>
                     </div>
                   </div>
                 </>
               }
               {index === 3 &&
                 <>
-                  <BlockMath math="\int_{a}^{b} f(x) \, dx = F(b)" style={mathStyle} />
-                  <div style={cardTextStyle} >
+                  <BlockMath math="\int_{a}^{b} f(x) \, dx = F(b)" className="text-2xl mb-1" />
+                  <div className="text-lg">
                     Calculus
                     <div>
-                      <span style={{ color: '#808080' }}>Advance</span>
+                      <span className="text-gray-600">Advance</span>
                     </div>
                   </div>
                 </>
@@ -100,7 +87,7 @@ const Form4 = () => {
           </Card>
         ))}
       </div>
-      </div>
+    </div>
   );
 };
 

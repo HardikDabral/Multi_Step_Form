@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 const LearningPaths = () => {
     const [hoveredCard, setHoveredCard] = useState(null);
     const [selectedCard, setSelectedCard] = useState(null);
-    const [isLoading, setIsLoading] = useState(true); 
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -12,7 +12,7 @@ const LearningPaths = () => {
         }, 5000);
 
         return () => clearTimeout(timer);
-    }, []); 
+    }, []);
 
     const handleMouseEnter = (cardIndex) => {
         if (selectedCard !== cardIndex) {
@@ -28,103 +28,71 @@ const LearningPaths = () => {
         setSelectedCard(cardIndex);
     };
 
-    const containerStyle = {
-        display: 'flex',
-        flexDirection: 'column', 
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '20px',
-    };
-
-    const cardStyle = {
-        width: '80%',
-        height: '150%',
-        cursor: 'pointer',
-        transition: 'transform 0.2s',
-        border: '1px solid #ccc',
-        boxShadow: '0 2px 4px rgba(0.1, 0.1, 0.1, 0.2)',
-        margin: '20px',
-    };
-
-    const hoveredCardStyle = {
-        border: '2px solid #007bff',
-    };
-
-    const textStyle = {
-        marginLeft: '20px',
-    };
-
     return (
-        <div style={{ padding: '20px' }}>
-            {isLoading ? ( 
-                <div style={{ textAlign: 'center' }}>
+        <div className="p-4">
+            {isLoading ? (
+                <div className="text-center">
                     <lord-icon
                         src="https://cdn.lordicon.com/afixdwmd.json"
                         trigger="loop"
                         delay="500"
-                        style={{ width: '100px', height: '100px' , marginTop: '180px' }}
+                        style={{ width: '100px', height: '100px' , marginTop: '200px' }}
+                        
                     ></lord-icon>
-                    <p style={{ fontWeight: 'bold' , fontSize: '32px' , marginTop: '10px' }}>Finding learning path recommendation for you based on your responses</p>
-                    <p style={{ fontWeight: 'bold' , fontSize: '32px' }}>your responses</p>
+                    <p className="font-bold text-4xl mt-7">Finding learning path recommendation for you based 
+                    <br></br>
+                    on your responses
+                    </p>
+            
+                    
                 </div>
             ) : (
-                
                 <>
-                    <h1 style={{ textAlign: 'center' }}>Learning paths based on your answers</h1>
-                    <h5 style={{ textAlign: 'center', marginBottom: '50px', marginTop: '20px' }}>
-                        <span style={{ color: '#808080' }}>
-                            Choose one to get started. You can switch anytime.
-                        </span>
-                    </h5>
-                    <div style={containerStyle}>
+                    <h1 className="text-center">Learning paths based on your answers</h1>
+                    <h5 className="text-center my-10 text-gray-600">Choose one to get started. You can switch anytime.</h5>
+                    <div className="flex flex-col md:flex-row justify-center gap-20">
                         <Card
-                            style={{
-                                ...cardStyle,
-                                ...(hoveredCard === 0 || selectedCard === 0 ? hoveredCardStyle : null),
-                                transform: hoveredCard === 0 || selectedCard === 0 ? 'scale(1.1)' : 'scale(1)',
-                            }}
+                            className={`w-full md:w-2/5 h-96 cursor-pointer transition-transform border-2 border-transparent hover:border-blue-500 ${
+                                (hoveredCard === 0 || selectedCard === 0) && 'border-blue-500 transform scale-110'
+                            }`}
                             onMouseEnter={() => handleMouseEnter(0)}
                             onMouseLeave={handleMouseLeave}
                             onClick={() => handleCardClick(0)}
                         >
-                            <Card.Body style={{ display: 'flex', position: 'relative', flexDirection: 'column', alignItems: 'center' }}>
-                                <span className="badge bg-warning text-dark" style={{ position: 'absolute', top: '-10px', left: '50%', transform: 'translateX(-50%)', width: '150px', height: '29px', fontSize: '16px', borderRadius: '40px' }}>
-                                    MOST POPULAR
-                                </span>
-                                <div style={{ padding: '0px', marginTop: '20px', textAlign: 'center' }}>
-                                    <Card.Text style={textStyle}>
-                                    <b>Foundational math</b> helps building your foundational skills in algebra, geometry, and probability. This learning path covers various topics such as basic arithmetic operations, algebraic expressions, geometric shapes, and probability concepts.
+                            <Card.Body className="flex flex-col items-center">
+                                <span className="badge bg-warning text-dark absolute top-0 left-1/2 transform -translate-x-1/2 -mt-3 px-4 py-2 text-lg" style={{ borderRadius: '9999px' }}>MOST POPULAR</span>
+                                <div className="mt-6 text-center">
+                                    <Card.Text>
+                                        <b>Foundational math</b> helps building your foundational skills in algebra, geometry, and probability. This learning path covers various topics such as basic arithmetic operations, algebraic expressions, geometric shapes, and probability concepts.
                                     </Card.Text>
                                 </div>
-                                <div style={{ marginTop: 'auto' }}>
+                                <div className="mt-auto">
                                     <img
                                         src="https://t3.ftcdn.net/jpg/05/61/00/50/240_F_561005074_OIsSf4HMaLgdcYYrvXv0W1eQcMvtk2p6.jpg"
-                                        style={{ width: '320px', height: '170px', marginLeft: '0px' }}
+                                        className="w-80 h-44"
                                         alt="Illustration"
                                     />
                                 </div>
                             </Card.Body>
                         </Card>
                         <Card
-                            style={{
-                                ...cardStyle,
-                                ...(hoveredCard === 1 || selectedCard === 1 ? hoveredCardStyle : null),
-                                transform: hoveredCard === 1 || selectedCard === 1 ? 'scale(1.1)' : 'scale(1)',
-                            }}
+                            className={`w-full md:w-2/5 h-96 cursor-pointer transition-transform border-2 border-transparent hover:border-blue-500 ${
+                                (hoveredCard === 1 || selectedCard === 1) && 'border-blue-500 transform scale-110'
+                            }`}
                             onMouseEnter={() => handleMouseEnter(1)}
                             onMouseLeave={handleMouseLeave}
                             onClick={() => handleCardClick(1)}
                         >
-                            <Card.Body style={{ display: 'flex', position: 'relative', flexDirection: 'column', alignItems: 'center' }}>
-                                <div style={{ padding: '0px', marginTop: '20px', textAlign: 'center' }}>
-                                    <Card.Text style={textStyle}>
-                                    <b>Mathematical thinking</b> builds your foundational skills in algebra, geometry, and probability. This learning path focuses on developing critical thinking and problem-solving skills in mathematics. You will explore advanced topics such as mathematical reasoning, proofs, and problem-solving strategies. 
+                            <Card.Body className="flex flex-col items-center">
+                                <div className="mt-6 text-center">
+                                    <Card.Text>
+                                        <b>Mathematical thinking</b> builds your foundational skills in algebra, geometry, and probability. This learning path focuses on developing critical thinking and problem-solving skills in mathematics. You will explore advanced topics such as mathematical reasoning, proofs, and problem-solving strategies.
                                     </Card.Text>
                                 </div>
-                                <div style={{ marginTop: 'auto' }}>
+                                <div className="mt-auto">
                                     <img
                                         src="https://t3.ftcdn.net/jpg/05/62/45/50/240_F_562455059_tNF7uRXUlpU0PFNglrH25HUAevJDpBAY.jpg"
-                                        style={{ width: '320px', height: '170px', marginLeft: '0px' }}
+                                        className="w-80 h-44"
                                         alt="Illustration"
                                     />
                                 </div>
@@ -138,3 +106,4 @@ const LearningPaths = () => {
 };
 
 export default LearningPaths;
+
